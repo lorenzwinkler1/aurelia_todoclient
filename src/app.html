@@ -26,6 +26,6 @@
 
   </table>
 
-  <button click.delegate="addPerson()">Neue Person einfügen</button>
+  <button click.delegate="addPerson()" if.bind="persons.length<10">Neue Person einfügen</button>
   <div class="count">${persons.length} Personen</div>
 </template>
