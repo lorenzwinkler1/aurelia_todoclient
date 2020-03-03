@@ -1,0 +1,31 @@
+<template>
+  <require from="./value-converter/price-converter"></require>
+
+  <h1>${message}</h1>
+  <input type="text" value.bind="price | price & updateTrigger:'blur'">
+  <button click.delegate="increment()">
+    Say Hello
+  </button>
+  <h2>${price | price}</h2>
+
+
+  <table>
+    <tr>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Fullname</th>
+      <th>Email</th>
+    </tr>
+    <tr repeat.for="person of persons">
+      <td><input type="text" value.bind="person.firstname"></td>
+      <td><input type="text" value.bind="person.lastname"></td>
+      <td>${person.fullname}</td>
+      <td><input type="emal" value.bind="person.email"></td>
+
+    </tr>
+
+  </table>
+
+  <button click.delegate="addPerson()">Neue Person einfügen</button>
+  <div class="count">${persons.length} Personen</div>
+</template>
