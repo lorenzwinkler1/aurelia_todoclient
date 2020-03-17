@@ -1,5 +1,7 @@
 <template>
   <require from="./value-converter/price-converter"></require>
+  <require from="./components/personlist"></require>
+  <<require from="./components/entrytextfield"></require>
 
   <h1>${message}</h1>
   <input type="text" value.bind="price | price & updateTrigger:'blur'">
@@ -8,24 +10,15 @@
   </button>
   <h2>${price | price}</h2>
 
+  <app-personlist persons.bind="persons" on-add.call="personAdded()" on-remove.call="personRemoved({ idx: idx })">
 
-  <table>
-    <tr>
-      <th>Firstname</th>
-      <th>Lastname</th>
-      <th>Fullname</th>
-      <th>Email</th>
-    </tr>
-    <tr repeat.for="person of persons">
-      <td><input type="text" value.bind="person.firstname"></td>
-      <td><input type="text" value.bind="person.lastname"></td>
-      <td>${person.fullname}</td>
-      <td><input type="emal" value.bind="person.email"></td>
+  </app-personlist>
 
-    </tr>
-
-  </table>
-
-  <button click.delegate="addPerson()" if.bind="persons.length<10">Neue Person einfügen</button>
-  <div class="count">${persons.length} Personen</div>
+  <div if.bind="isPersonAdded">
+    Person hinzugefügt
+  </div>
+  <div if.bind="removedIndex!=null">
+    Person ${removedIndex + 1} wurde entfernt
+  </div>
+  <app-entrytextfield></app-entrytextfield>
 </template>

@@ -1,0 +1,30 @@
+<template>
+  <div class="message-loading" if.bind="!persons">
+    Daten werden geladen...
+  </div>
+  <div class="table-all" if.bind="persons">
+    <table>
+      <tr>
+        <th>#</th>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Fullname</th>
+        <th>Email</th>
+        <th>Löschen</th>
+      </tr>
+      <tr repeat.for="person of persons">
+        <td>${$index+1}</td>
+        <td><input type="text" value.bind="person.firstname"></td>
+        <td><input type="text" value.bind="person.lastname"></td>
+        <td>${person.fullname}</td>
+        <td><input type="email" value.bind="person.email"></td>
+        <td><a style="cursor: pointer;" click.delegate="removePerson($index)">Löschen</a></td>
+      </tr>
+
+    </table>
+
+    <button click.delegate="addPerson()" if.bind="persons.length<10">Neue Person einfügen</button>
+    <div class="count">${persons.length} Personen</div>
+  </div>
+
+</template>
